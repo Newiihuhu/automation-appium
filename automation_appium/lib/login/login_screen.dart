@@ -14,12 +14,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  FocusNode _emailFocusNode = FocusNode();
-  FocusNode _passFocusNode = FocusNode();
-  late String _email;
-  late String _password;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passFocusNode = FocusNode();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -99,7 +97,6 @@ class _LoginScreenState extends State<LoginScreen> {
         hintText: "Enter email",
         obscureText: false,
         onSaved: (String? val) {
-          _email = val!;
         },
         onFieldSubmitted: (String value) {
           FocusScope.of(context).requestFocus(_passFocusNode);
@@ -116,7 +113,6 @@ class _LoginScreenState extends State<LoginScreen> {
       obscureText: true,
       icon: Icons.lock_outline,
       onSaved: (String? val) {
-        _password = val!;
       },
       iconColor: const Color.fromRGBO(97, 10, 165, 0.8),
       onFieldSubmitted: (String value) {},
@@ -189,8 +185,19 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               _emailWidget(),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               _passwordWidget(),
+              const SizedBox(height: 10),
+              GestureDetector(
+                  onTap: () {},
+                  child: const Padding(
+                    padding: EdgeInsets.only(right: 24),
+                    child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Text("Forgot Password?",
+                            style:
+                                TextStyle(fontFamily: 'Exo2', fontSize: 16.0))),
+                  )),
             ],
           ),
         ),
