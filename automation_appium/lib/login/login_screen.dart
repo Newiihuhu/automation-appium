@@ -1,3 +1,4 @@
+import 'package:automation_appium/dashboard/dashboard_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -96,8 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
         focusNode: _emailFocusNode,
         hintText: "Enter email",
         obscureText: false,
-        onSaved: (String? val) {
-        },
+        onSaved: (String? val) {},
         onFieldSubmitted: (String value) {
           FocusScope.of(context).requestFocus(_passFocusNode);
         },
@@ -112,8 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
       hintText: "Enter Password",
       obscureText: true,
       icon: Icons.lock_outline,
-      onSaved: (String? val) {
-      },
+      onSaved: (String? val) {},
       iconColor: const Color.fromRGBO(97, 10, 165, 0.8),
       onFieldSubmitted: (String value) {},
     );
@@ -142,7 +141,11 @@ class _LoginScreenState extends State<LoginScreen> {
           onPressed: () {
             // Going to DashBoard
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Container()));
+              context,
+              MaterialPageRoute(
+                builder: (context) => DashboardScreen(),
+              ),
+            );
           },
         ),
       ),
