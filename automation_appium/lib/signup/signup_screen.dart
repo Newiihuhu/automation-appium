@@ -166,7 +166,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: const Text(
           "Sign Up",
           style: TextStyle(
-              fontFamily: 'Exo2', color: Colors.white, fontSize: 20.0),
+              fontFamily: 'Exo2',
+              color: Colors.white,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold),
         ),
         onPressed: () {
           // Going to DashBoard
