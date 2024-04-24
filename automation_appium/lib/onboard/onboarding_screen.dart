@@ -82,13 +82,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   _controller.animateToPage(currentPageIndex - 1,
-                      duration: Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 300),
                       curve: Curves.easeOut);
                 },
               )),
           actions: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: 16, right: 12, bottom: 12),
+              padding: const EdgeInsets.only(top: 16, right: 12, bottom: 12),
               child: ElevatedButton(
                 onPressed: isLastPage
                     ? () async {
@@ -100,18 +100,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       }
                     : () {
                         _controller.animateToPage(currentPageIndex + 1,
-                            duration: Duration(milliseconds: 300),
+                            duration: const Duration(milliseconds: 300),
                             curve: Curves.easeIn);
                       },
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                        Color.fromRGBO(97, 6, 165, 1.0)),
+                        const Color.fromRGBO(97, 6, 165, 1.0)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0)))),
                 child: Text(
                   isLastPage ? 'DONE' : 'NEXT',
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: 'Exo2SemiBold',
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
@@ -133,7 +133,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         child: DotsIndicator(
           controller: _controller,
           itemCount: _pages.length,
-          color: Color.fromRGBO(97, 10, 165, 0.8),
+          color: const Color.fromRGBO(97, 10, 165, 0.8),
           onPageSelected: (int page) {
             _controller.animateToPage(
               page,
