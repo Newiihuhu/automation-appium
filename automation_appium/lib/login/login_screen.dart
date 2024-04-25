@@ -1,9 +1,8 @@
-import 'package:automation_appium/dashboard/dashboard_screen.dart';
+import 'package:automation_appium/home/page_home.dart';
 import 'package:automation_appium/utils/firebase.dart';
+import 'package:automation_appium/utils/preferences.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import '../signup/signup_screen.dart';
 import '../widgets/gradient_text.dart';
@@ -208,7 +207,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
     signIn(email, password, _showErrorMessage).then((userCredential) {
       if (userCredential != null) {
-        _navigateToDashboard(context);
+        Preferences.setLoggedIn(true).then((_) {
+          _navigateToDashboard(context);
+        });
       }
     });
   }
@@ -226,7 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const DashboardScreen(),
+        builder: (context) => const HomePage(),
       ),
     );
   }

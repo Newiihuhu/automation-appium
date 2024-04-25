@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:automation_appium/home/page_home.dart';
 import 'package:automation_appium/login/login_screen.dart';
 import 'package:automation_appium/utils/preferences.dart';
 import 'package:flutter/material.dart';
@@ -35,12 +36,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigateFromSplash() async {
     bool isOnboardingComplete = await Preferences.isOnboardingComplete();
+    bool isLoggedIn = await Preferences.isLoggedIn();
+
     if (isOnboardingComplete) {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()));
+      if (isLoggedIn) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
+      } else {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const LoginScreen()));
+      }
     } else {
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => const OnBoardingScreen()));
     }
- }
+  }
 }
