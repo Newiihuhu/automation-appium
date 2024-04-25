@@ -1,3 +1,4 @@
+import 'package:automation_appium/utils/preferences.dart';
 import 'package:flutter/material.dart';
 
 import '../login/login_screen.dart';
@@ -92,6 +93,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: ElevatedButton(
                 onPressed: isLastPage
                     ? () async {
+                        await Preferences
+                            .setOnboardingComplete(); // Save the state
                         // Last Page Done Click
                         Navigator.pushReplacement(
                             context,
