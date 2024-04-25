@@ -9,6 +9,7 @@ class InputText extends StatefulWidget {
   final ValueChanged<String> onFieldSubmitted;
   final FormFieldSetter<String> onSaved;
   final FocusNode focusNode;
+  final String? Function(String?)? validator;
   const InputText({
     super.key,
     required this.controller,
@@ -19,6 +20,7 @@ class InputText extends StatefulWidget {
     required this.onSaved,
     required this.iconColor,
     required this.focusNode,
+    this.validator,
   });
 
   @override
@@ -60,6 +62,7 @@ class _InputTextState extends State<InputText> {
             obscureText: widget.obscureText,
             controller: widget.controller,
             onSaved: widget.onSaved,
+            validator: widget.validator,
             onFieldSubmitted: widget.onFieldSubmitted,
             decoration: InputDecoration(
                 border: InputBorder.none,

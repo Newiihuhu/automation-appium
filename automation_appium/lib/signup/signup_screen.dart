@@ -1,5 +1,9 @@
+import 'package:automation_appium/login/login_screen.dart';
+import 'package:automation_appium/utils/firebase.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../widgets/gradient_text.dart';
 import '../widgets/input_text.dart';
@@ -143,6 +147,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
       hintText: "Enter Confirm Password",
       obscureText: true,
       icon: Icons.lock_outline,
+      validator: (val) {
+        if (val!.isEmpty) return 'Confirm password is required';
+        if (val != _passwordController.text) return 'Passwords do not match';
+        return null;
+      },
       onSaved: (String? val) {
         _confirmPassword = val!;
       },
@@ -163,6 +172,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
           padding: const EdgeInsets.all(12),
           backgroundColor: const Color.fromRGBO(97, 10, 165, 0.8),
         ),
+        onPressed: () async {
+          if (_formKey.currentState!.validate()) {
+            _formKey.currentState!.save();
+            bool success =
+                await signUpUser(_email, _password, _name, (String errorMsg) {
+              // Handle error by showing an alert dialog or a snackbar
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(errorMsg)));
+            });
+            if (success) {
+              // Show success message
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text("Sign up successful! Please log in."),
+                duration: Duration(seconds: 3),
+              ));
+              // Navigate to LoginScreen after a delay
+              await Future.delayed(const Duration(milliseconds: 300));
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+              );
+            }
+          }
+        },
         child: const Text(
           "Sign Up",
           style: TextStyle(
@@ -171,30 +204,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
               fontSize: 20.0,
               fontWeight: FontWeight.bold),
         ),
-        onPressed: () {
-          // Going to DashBoard
-        },
       ),
     );
   }
 
-  registerFields() => Container(
-        child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                _nameWidget(),
-                const SizedBox(height: 10),
-                _emailWidget(),
-                const SizedBox(height: 10),
-                _passwordWidget(),
-                const SizedBox(height: 10),
-                _confirmPasswordWidget(),
-                const SizedBox(height: 20),
-                _signUpButtonWidget(),
-              ],
-            )),
-      );
+  registerFields() => Form(
+      key: _formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          _nameWidget(),
+          const SizedBox(height: 10),
+          _emailWidget(),
+          const SizedBox(height: 10),
+          _passwordWidget(),
+          const SizedBox(height: 10),
+          _confirmPasswordWidget(),
+          const SizedBox(height: 20),
+          _signUpButtonWidget(),
+        ],
+      ));
 }
