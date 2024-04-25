@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "961586507345",
+    "project_id": "automate-appium-class",
+    "storage_bucket": "automate-appium-class.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961586507345:android:48d55e21e6a099520f9270",
+        "android_client_info": {
+          "package_name": "com.example.automation_appium"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpwRiowJa5dA-_e0i7nkCZXd8JSp4zzAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
