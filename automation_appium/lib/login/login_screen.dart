@@ -1,7 +1,9 @@
 import 'package:automation_appium/dashboard/dashboard_screen.dart';
+import 'package:automation_appium/utils/firebase.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../signup/signup_screen.dart';
 import '../widgets/gradient_text.dart';
@@ -139,13 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 fontWeight: FontWeight.bold),
           ),
           onPressed: () {
-            // Going to DashBoard
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DashboardScreen(),
-              ),
-            );
+            _handleSignIn(context);
           },
         ),
       ),
@@ -205,4 +201,33 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       );
+
+  void _handleSignIn(BuildContext context) {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    signIn(email, password, _showErrorMessage).then((userCredential) {
+      if (userCredential != null) {
+        _navigateToDashboard(context);
+      }
+    });
+  }
+
+  void _showErrorMessage(String errorMessage) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(errorMessage),
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
+
+  void _navigateToDashboard(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const DashboardScreen(),
+      ),
+    );
+  }
 }

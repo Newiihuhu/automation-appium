@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'automate-appium-class.appspot.com',
     measurementId: 'G-81MX069848',
   );
+
 }
