@@ -1,11 +1,14 @@
-import 'package:automation_appium/models/Property.dart';
 import 'package:automation_appium/utils/colors.dart';
 import 'package:automation_appium/utils/responsive_screen.dart';
 import 'package:automation_appium/widgets/boxfield.dart';
 import 'package:automation_appium/widgets/tabs_chips.dart';
 import 'package:automation_appium/widgets/upper_curve_clipper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+
+import '../models/water.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -18,17 +21,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
   late Screen size;
   int _selectedIndex = 1;
 
-  final List<Property> premiumList = [];
-  final List<Property> featuredList = [];
-  final List<String> citiesList = [
-    "Ahmedabad",
-    "Mumbai",
-    "Delhi ",
-    "Chennai",
-    "Goa",
-    "Kolkata",
-    "Indore",
-    "Jaipur"
+  final List<Water> otherWaterList = [];
+  final List<Water> thaiWaterList = [];
+  final List<String> watersList = [
+    "Nestlé Pure Life",
+    "Aquafina",
+    "Evian",
+    "Mountain Valley",
+    "Mont Fleur",
+    "Singha"
   ];
 
   @override
@@ -82,26 +83,63 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-
-    premiumList
+    thaiWaterList
       ..add(
-        Property(
+        Water(
           id: '1',
-          propertyName: "Omkar Lotus",
-          propertyLocation: "Ahmedabad ",
-          image: "feature_1.jpg",
-          propertyPrice: "26.5 Cr",
-          propertyDesc: '',
+          waterName: "Mont Fleur",
+          image: "Mont-Fleur.jpeg",
+          waterPrice: "฿18.00",
+          waterDesc: 'Mont Fleur Mineral Water 1000ml.',
         ),
       )
       ..add(
-        Property(
+        Water(
           id: '2',
-          propertyName: "Sandesh Heights",
-          propertyLocation: "Baroda ",
-          image: "feature_2.jpg",
-          propertyPrice: "11.5 Cr",
-          propertyDesc: '',
+          waterName: "Purra",
+          image: "Purra.jpg",
+          waterPrice: "฿16.33",
+          waterDesc: 'Purra. Purra Mineral Water 1500ML.',
+        ),
+      )
+      ..add(
+        Water(
+          id: '3',
+          waterName: "Singha",
+          image: "Singha.jpeg",
+          waterPrice: "฿10.00",
+          waterDesc:
+              'น้ำสิงห์อุดมไปด้วยแคลเซียม ช่วยเสริมความแข็งแรงของกระดูกและฟัน',
+        ),
+      )
+      ..add(
+        Water(
+          id: '4',
+          waterName: "Crystal",
+          image: "Crystal.jpeg",
+          waterPrice: "฿5.33",
+          waterDesc:
+              'น้ำดื่มคริสตัล ผ่านกระบวนการผลิตมาอย่างเคลียร์ถึง 19 ขั้นตอน เพื่อให้ได้น้ำดื่มคุณภาพ มาตฐานระดับสากล',
+        ),
+      );
+
+    otherWaterList
+      ..add(
+        Water(
+          id: '1',
+          waterName: "Aquafina",
+          image: "aquafina.jpeg",
+          waterPrice: "฿14.00",
+          waterDesc: 'น้ำแร่ธรรมชาติ 100% อควาฟิน่า มิเนเรล',
+        ),
+      )
+      ..add(
+        Water(
+          id: '2',
+          waterName: "Acqua Panna",
+          image: "Acqua-Panna.jpeg",
+          waterPrice: "฿79.00",
+          waterDesc: 'ACQUA PANNA. อควา ปานน่า น้ำแร่ธรรมชาติ 750มล.',
         ),
       );
   }
@@ -129,7 +167,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Card propertyCard(Property property) {
+  Card waterCard(Water water) {
     return Card(
       elevation: 4.0,
       margin: const EdgeInsets.all(8),
@@ -141,30 +179,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(12.0),
-                topRight: Radius.circular(12.0),
-              ),
-              child: Image.asset(
-                'assets/${property.image}',
-                fit: BoxFit.fill,
+            Expanded(
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(12.0),
+                  topRight: Radius.circular(12.0),
+                ),
+                child: Image.asset(
+                  'assets/${water.image}',
+                  fit: BoxFit.fitWidth,
+                ),
               ),
             ),
             SizedBox(height: size.getWidthPx(8)),
             leftAlignText(
-                text: property.propertyName,
+                text: water.waterName,
                 leftPadding: size.getWidthPx(8),
                 textColor: colorCurve,
                 fontSize: 14.0),
-            leftAlignText(
-                text: property.propertyLocation,
-                leftPadding: size.getWidthPx(8),
-                textColor: Colors.black54,
-                fontSize: 12.0),
             SizedBox(height: size.getWidthPx(4)),
             leftAlignText(
-                text: property.propertyPrice,
+                text: water.waterPrice,
                 leftPadding: size.getWidthPx(8),
                 textColor: colorCurve,
                 fontSize: 14.0,
@@ -177,7 +212,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Text titleWidget() {
     return const Text(
-      "Which type of house\nwould you like to buy?",
+      "Which brand of water\nwould you like to buy?",
       style: TextStyle(
         fontFamily: 'Exo2',
         fontSize: 24.0,
@@ -200,14 +235,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: <Widget>[
             _searchWidget(),
             leftAlignText(
-                text: "Top Cities :",
+                text: "Top Waters :",
                 leftPadding: size.getWidthPx(16),
                 textColor: textPrimaryColor,
                 fontSize: 16.0),
             HorizontalList(
               children: <Widget>[
-                for (int i = 0; i < citiesList.length; i++)
-                  buildChoiceChip(i, citiesList[i])
+                for (int i = 0; i < watersList.length; i++)
+                  buildChoiceChip(i, watersList[i])
               ],
             ),
           ],
@@ -232,8 +267,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         Column(
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(top: size.getWidthPx(36)),
+            SafeArea(
               child: Column(
                 children: <Widget>[
                   titleWidget(),
@@ -243,27 +277,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
             leftAlignText(
-                text: "Premium properties",
+                text: "Thai Water",
                 leftPadding: size.getWidthPx(16),
                 textColor: textPrimaryColor,
                 fontSize: 16.0),
             HorizontalList(
               children: <Widget>[
-                for (int i = 0; i < premiumList.length; i++)
-                  propertyCard(premiumList[i])
+                for (int i = 0; i < thaiWaterList.length; i++)
+                  waterCard(thaiWaterList.reversed.toList()[i])
               ],
             ),
             leftAlignText(
-                text: "Featured properties",
+                text: "Others Water",
                 leftPadding: size.getWidthPx(16),
                 textColor: textPrimaryColor,
                 fontSize: 16.0),
             HorizontalList(
               children: <Widget>[
-                for (int i = 0; i < premiumList.length; i++)
-                  propertyCard(premiumList.reversed.toList()[i])
+                for (int i = 0; i < otherWaterList.length; i++)
+                  waterCard(otherWaterList[i])
               ],
-            )
+            ),
           ],
         ),
       ],
@@ -274,10 +308,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return BoxField(
       controller: TextEditingController(),
       focusNode: FocusNode(),
-      hintText: "Select by city, area or locality.",
+      hintText: "Search by water name...",
       labelText: "Search...",
       obscureText: false,
-      onSaved: (String? val) {},
+      onSaved: (String? val) {
+        setState(() {
+          print(val);
+        });
+      },
       icon: Icons.search,
       iconColor: colorCurve,
     );
