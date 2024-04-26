@@ -207,7 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     signIn(email, password, _showErrorMessage).then((userCredential) {
       if (userCredential != null) {
-        Preferences.setLoggedIn(true).then((_) {
+        Preferences.setLoggedIn(userCredential.user?.uid ?? '').then((_) {
           _navigateToDashboard(context);
         });
       }

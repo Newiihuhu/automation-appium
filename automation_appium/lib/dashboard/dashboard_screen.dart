@@ -11,7 +11,7 @@ class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
   @override
-   State<DashboardScreen> createState() => _DashboardScreenState();
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
@@ -106,7 +106,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       );
   }
 
-  Padding leftAlignText({String? text, required double leftPadding, required Color textColor, required double fontSize, FontWeight? fontWeight}) {
+  Padding leftAlignText(
+      {String? text,
+      required double leftPadding,
+      required Color textColor,
+      required double fontSize,
+      FontWeight? fontWeight}) {
     return Padding(
       padding: EdgeInsets.only(left: leftPadding),
       child: Align(
@@ -171,12 +176,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Text titleWidget() {
-    return const Text("Which type of house\nwould you like to buy?",
-        style: TextStyle(
-            fontFamily: 'Exo2',
-            fontSize: 24.0,
-            fontWeight: FontWeight.w900,
-            color: Colors.white));
+    return const Text(
+      "Which type of house\nwould you like to buy?",
+      style: TextStyle(
+        fontFamily: 'Exo2',
+        fontSize: 24.0,
+        fontWeight: FontWeight.w900,
+        color: Colors.white,
+      ),
+    );
   }
 
   Card upperBoxCard() {

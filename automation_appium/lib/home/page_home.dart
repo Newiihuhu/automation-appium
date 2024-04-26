@@ -1,4 +1,5 @@
 import 'package:automation_appium/dashboard/dashboard_screen.dart';
+import 'package:automation_appium/setting/setting_screen.dart';
 import 'package:automation_appium/widgets/bottom_navigationBar.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         break;
       case 3:
         //Setting Page
-        tabView = [Container()];
+        tabView = [SettingScreen()];
         break;
     }
     return PageView(controller: pageController, children: tabView);

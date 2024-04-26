@@ -14,15 +14,14 @@ class Preferences {
     await prefs.setBool(onboardingCompleteKey, true);
   }
 
-  // Check if the user is logged in
   static Future<bool> isLoggedIn() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(isLoggedInKey) ?? false;
+    return prefs.getString(isLoggedInKey) != null &&
+        prefs.getString(isLoggedInKey)!.isNotEmpty;
   }
 
-  // Set the login state of the user
-  static Future<void> setLoggedIn(bool isLoggedIn) async {
+  static Future<void> setLoggedIn(String isLoggedIn) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(isLoggedInKey, isLoggedIn);
+    await prefs.setString(isLoggedInKey, isLoggedIn);
   }
 }
