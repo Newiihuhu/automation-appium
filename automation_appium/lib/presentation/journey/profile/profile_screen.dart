@@ -43,18 +43,10 @@ class ProfileScreenState extends State<ProfileScreen> {
 
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: AnnotatedRegion(
-        value: SystemUiOverlayStyle(
-            statusBarColor: backgroundColor,
-            statusBarBrightness: Brightness.dark,
-            statusBarIconBrightness: Brightness.dark,
-            systemNavigationBarIconBrightness: Brightness.dark,
-            systemNavigationBarColor: backgroundColor),
-        child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: Column(
-            children: <Widget>[upperPart(), const PhotosList()],
-          ),
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Column(
+          children: <Widget>[upperPart(), const PhotosList()],
         ),
       ),
     );

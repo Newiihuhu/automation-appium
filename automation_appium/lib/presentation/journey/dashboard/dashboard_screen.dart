@@ -36,17 +36,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle(
-            statusBarColor: backgroundColor,
-            statusBarBrightness: Brightness.dark,
-            statusBarIconBrightness: Brightness.dark,
-            systemNavigationBarIconBrightness: Brightness.dark,
-            systemNavigationBarColor: backgroundColor),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[upperPart()],
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[upperPart()],
         ),
       ),
     );
