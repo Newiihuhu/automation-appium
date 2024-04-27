@@ -1,0 +1,17 @@
+{
+  "name": "e2e_mobile",
+  "type": "module",
+  "devDependencies": {
+    "@wdio/appium-service": "^8.36.1",
+    "@wdio/cli": "^8.36.1",
+    "@wdio/cucumber-framework": "^8.36.1",
+    "@wdio/local-runner": "^8.36.1",
+    "@wdio/spec-reporter": "^8.36.1",
+    "appium-uiautomator2-driver": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "wdio": "wdio run ./wdio.conf.ts"
+  }
+}
