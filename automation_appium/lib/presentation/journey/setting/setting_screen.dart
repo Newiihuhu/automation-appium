@@ -1,3 +1,4 @@
+import 'package:automation_appium/presentation/journey/change-password/change_password_screen.dart';
 import 'package:automation_appium/presentation/journey/login/login_screen.dart';
 import 'package:automation_appium/utils/colors.dart';
 import 'package:automation_appium/utils/preferences.dart';
@@ -55,7 +56,12 @@ class _SettingsScreenState extends State<SettingScreen> {
           ListTile(
             title: const Text('Change Password'),
             trailing: const Icon(Icons.navigate_next),
-            onTap: () {},
+            onTap: () async {
+              await Preferences.setLoggedIn('');
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ChangePasswordScreen()),
+              );
+            },
           ),
           // const Padding(
           //   padding: EdgeInsets.all(8.0),

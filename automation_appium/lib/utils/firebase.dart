@@ -36,3 +36,18 @@ Future<bool> signUpUser(String email, String password, String name,
     return false; // Return false on failure
   }
 }
+
+Future<bool> reauthenticateUser(
+    String email, String password, Function(String) onError) async {
+  try {
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return true;
+  } on FirebaseAuthException catch (e) {
+    onError(e.message ?? 'An error occurred during reauthentication.');
+    return false;
+  }
+}
