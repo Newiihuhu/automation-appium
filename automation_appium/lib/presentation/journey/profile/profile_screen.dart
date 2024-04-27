@@ -2,6 +2,7 @@ import 'package:automation_appium/presentation/journey/profile/photo_list_widget
 import 'package:automation_appium/presentation/widgets/upper_curve_clipper.dart';
 import 'package:automation_appium/presentation/widgets/utils_widget.dart';
 import 'package:automation_appium/utils/colors.dart';
+import 'package:automation_appium/utils/firebase.dart';
 import 'package:automation_appium/utils/preferences.dart';
 import 'package:automation_appium/utils/responsive_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,11 +29,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _fetchUserName() async {
     String uuid = await Preferences.getUserUID();
     if (uuid != '') {
-      DocumentSnapshot userDoc =
-          await FirebaseFirestore.instance.collection('users').doc(uuid).get();
-      setState(() {
-        userName = userDoc.get('name');
-      });
+      String? userName = await fetchUserName(uuid);
+      if (userName != null) {
+        setState(() {
+          this.userName = userName;
+        });
+      }
     }
   }
 

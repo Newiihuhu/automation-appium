@@ -51,3 +51,10 @@ Future<bool> reauthenticateUser(
     return false;
   }
 }
+
+// Add this function to firebase.dart
+Future<String?> fetchUserName(String uuid) async {
+ DocumentSnapshot userDoc =
+      await FirebaseFirestore.instance.collection('users').doc(uuid).get();
+ return userDoc.get('name');
+}
