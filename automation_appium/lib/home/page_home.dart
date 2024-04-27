@@ -62,10 +62,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       case 0:
         tabView = [const DashboardScreen()];
         break;
-      case 2:
+      case 1:
         tabView = [Container()];
         break;
-      case 3:
+      case 2:
         tabView = [SettingScreen()];
         break;
     }
