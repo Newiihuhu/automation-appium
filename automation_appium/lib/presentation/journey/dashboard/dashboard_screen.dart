@@ -5,6 +5,7 @@ import 'package:automation_appium/presentation/widgets/tabs_chips.dart';
 import 'package:automation_appium/presentation/widgets/upper_curve_clipper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../models/water.dart';
 
@@ -18,17 +19,54 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   late Screen size;
   int _selectedIndex = 1;
-
-  final List<Water> otherWaterList = [];
-  final List<Water> thaiWaterList = [];
-  final List<String> watersList = [
-    "Nestlé Pure Life",
-    "Aquafina",
-    "Evian",
-    "Mountain Valley",
-    "Mont Fleur",
-    "Singha"
+  TextEditingController controller = TextEditingController();
+  final List<Water> watersList = [
+    Water(
+      id: '1',
+      waterName: "Mont Fleur",
+      image: "Mont-Fleur.jpeg",
+      waterPrice: "฿18.00",
+      waterDesc: 'Mont Fleur Mineral Water 1000ml.',
+    ),
+    Water(
+      id: '2',
+      waterName: "Purra",
+      image: "Purra.jpg",
+      waterPrice: "฿16.33",
+      waterDesc: 'Purra. Purra Mineral Water 1500ML.',
+    ),
+    Water(
+      id: '3',
+      waterName: "Singha",
+      image: "Singha.jpeg",
+      waterPrice: "฿10.00",
+      waterDesc:
+          'น้ำสิงห์อุดมไปด้วยแคลเซียม ช่วยเสริมความแข็งแรงของกระดูกและฟัน',
+    ),
+    Water(
+      id: '4',
+      waterName: "Crystal",
+      image: "Crystal.jpeg",
+      waterPrice: "฿5.33",
+      waterDesc:
+          'น้ำดื่มคริสตัล ผ่านกระบวนการผลิตมาอย่างเคลียร์ถึง 19 ขั้นตอน เพื่อให้ได้น้ำดื่มคุณภาพ มาตฐานระดับสากล',
+    ),
+    Water(
+      id: '5',
+      waterName: "Aquafina",
+      image: "aquafina.jpeg",
+      waterPrice: "฿14.00",
+      waterDesc: 'น้ำแร่ธรรมชาติ 100% อควาฟิน่า มิเนเรล',
+    ),
+    Water(
+      id: '5',
+      waterName: "Acqua Panna",
+      image: "Acqua-Panna.jpeg",
+      waterPrice: "฿79.00",
+      waterDesc: 'ACQUA PANNA. อควา ปานน่า น้ำแร่ธรรมชาติ 750มล.',
+    ),
   ];
+  late List<Water> searchResults = [];
 
   @override
   Widget build(BuildContext context) {
@@ -73,65 +111,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    thaiWaterList
-      ..add(
-        Water(
-          id: '1',
-          waterName: "Mont Fleur",
-          image: "Mont-Fleur.jpeg",
-          waterPrice: "฿18.00",
-          waterDesc: 'Mont Fleur Mineral Water 1000ml.',
-        ),
-      )
-      ..add(
-        Water(
-          id: '2',
-          waterName: "Purra",
-          image: "Purra.jpg",
-          waterPrice: "฿16.33",
-          waterDesc: 'Purra. Purra Mineral Water 1500ML.',
-        ),
-      )
-      ..add(
-        Water(
-          id: '3',
-          waterName: "Singha",
-          image: "Singha.jpeg",
-          waterPrice: "฿10.00",
-          waterDesc:
-              'น้ำสิงห์อุดมไปด้วยแคลเซียม ช่วยเสริมความแข็งแรงของกระดูกและฟัน',
-        ),
-      )
-      ..add(
-        Water(
-          id: '4',
-          waterName: "Crystal",
-          image: "Crystal.jpeg",
-          waterPrice: "฿5.33",
-          waterDesc:
-              'น้ำดื่มคริสตัล ผ่านกระบวนการผลิตมาอย่างเคลียร์ถึง 19 ขั้นตอน เพื่อให้ได้น้ำดื่มคุณภาพ มาตฐานระดับสากล',
-        ),
-      );
-
-    otherWaterList
-      ..add(
-        Water(
-          id: '1',
-          waterName: "Aquafina",
-          image: "aquafina.jpeg",
-          waterPrice: "฿14.00",
-          waterDesc: 'น้ำแร่ธรรมชาติ 100% อควาฟิน่า มิเนเรล',
-        ),
-      )
-      ..add(
-        Water(
-          id: '2',
-          waterName: "Acqua Panna",
-          image: "Acqua-Panna.jpeg",
-          waterPrice: "฿79.00",
-          waterDesc: 'ACQUA PANNA. อควา ปานน่า น้ำแร่ธรรมชาติ 750มล.',
-        ),
-      );
+    searchResults = watersList;
   }
 
   Padding leftAlignText(
@@ -220,21 +200,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           horizontal: size.getWidthPx(20), vertical: size.getWidthPx(16)),
       borderOnForeground: true,
       child: SizedBox(
-        height: size.getWidthPx(150),
         child: Column(
           children: <Widget>[
             _searchWidget(),
-            leftAlignText(
-                text: "Top Waters :",
-                leftPadding: size.getWidthPx(16),
-                textColor: textPrimaryColor,
-                fontSize: 16.0),
-            HorizontalList(
-              children: <Widget>[
-                for (int i = 0; i < watersList.length; i++)
-                  buildChoiceChip(i, watersList[i])
-              ],
-            ),
           ],
         ),
       ),
@@ -266,28 +234,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ],
               ),
             ),
-            leftAlignText(
-                text: "Thai Water",
-                leftPadding: size.getWidthPx(16),
-                textColor: textPrimaryColor,
-                fontSize: 16.0),
-            HorizontalList(
-              children: <Widget>[
-                for (int i = 0; i < thaiWaterList.length; i++)
-                  waterCard(thaiWaterList.reversed.toList()[i])
-              ],
-            ),
-            leftAlignText(
-                text: "Others Water",
-                leftPadding: size.getWidthPx(16),
-                textColor: textPrimaryColor,
-                fontSize: 16.0),
-            HorizontalList(
-              children: <Widget>[
-                for (int i = 0; i < otherWaterList.length; i++)
-                  waterCard(otherWaterList[i])
-              ],
-            ),
+            staggeredBody()
           ],
         ),
       ],
@@ -296,18 +243,51 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   BoxField _searchWidget() {
     return BoxField(
-      controller: TextEditingController(),
+      controller: controller,
       focusNode: FocusNode(),
       hintText: "Search by water name...",
       labelText: "Search...",
       obscureText: false,
       onSaved: (String? val) {
         setState(() {
-          print(val);
+          _handleSearch(controller.text);
+        });
+      },
+      onChanged: (String? val) {
+        setState(() {
+          _handleSearch(controller.text);
         });
       },
       icon: Icons.search,
       iconColor: colorCurve,
     );
+  }
+
+  Widget staggeredBody() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: size.getWidthPx(8)),
+      child: StaggeredGrid.count(
+        crossAxisCount: 2,
+        mainAxisSpacing: 4,
+        crossAxisSpacing: 4,
+        children: List.generate(
+          searchResults.length,
+          (index) {
+            return waterCard(searchResults.reversed.toList()[index]);
+          },
+        ),
+      ),
+    );
+  }
+
+  void _handleSearch(String input) {
+    searchResults = [];
+    for (var str in watersList) {
+      if (str.waterName.toLowerCase().contains(input.toLowerCase())) {
+        setState(() {
+          searchResults.add(str);
+        });
+      }
+    }
   }
 }

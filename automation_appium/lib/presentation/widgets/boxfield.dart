@@ -129,6 +129,7 @@ class BoxFieldState extends State<BoxField> {
               obscureText: widget.obscureText,
               controller: widget.controller,
               onSaved: widget.onSaved,
+              onChanged: widget.onChanged,
               validator: widget.validator,
               onFieldSubmitted: widget.onFieldSubmitted,
               decoration: InputDecoration(
