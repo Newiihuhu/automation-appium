@@ -1,12 +1,8 @@
-Feature: The Internet Guinea Pig Website
+@login
+Feature: Login
 
-  Scenario Outline: As a user, I can log into the secure area
-
-    Given I am on the login page
-    When I login with <username> and <password>
-    Then I should see a flash message saying <message>
-
-    Examples:
-      | username | password             | message                        |
-      | tomsmith | SuperSecretPassword! | You logged into a secure area! |
-      | foobar   | barfoo               | Your username is invalid!      |
+  Scenario Outline: As a user, I can log into the dashboard screen
+    Given I am on the onboarding screen
+    Given I am on the login screen
+    When I login with email "automate@mail.com" and password "Test@1234"
+    Then I should see dashboard screen

@@ -12,6 +12,8 @@
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.ts"
+    "e2e:android:all": "wdio run ./config/wdio.conf.ts",
+    "e2e:ios:all": "wdio run ./config/wdio-ios.conf.ts",
+    "e2e:android:tag": "wdio run ./config/wdio.conf.ts --cucumberOpts.tags=\"$npm_config_tag\""
   }
 }

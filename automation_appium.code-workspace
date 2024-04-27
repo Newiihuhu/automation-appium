@@ -6,5 +6,10 @@
 		{
 			"path": "e2e_mobile"
 		}
-	]
+	],
+	"settings": {
+		"conventionalCommits.scopes": [
+			"e2e"
+		]
+	}
 }

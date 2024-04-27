@@ -1,23 +1,39 @@
-import { Given, When, Then } from '@wdio/cucumber-framework';
+import { Given, Then, When } from '@wdio/cucumber-framework';
 import { expect, $ } from '@wdio/globals'
 
-import LoginPage from '../pageobjects/login.page.js';
-import SecurePage from '../pageobjects/secure.page.js';
+Given('I am on the onboarding screen', async () => {
+    const nextButton = await $('~NEXT');
+    const doneButton = await $('~DONE');
 
-const pages = {
-    login: LoginPage
-}
+    await nextButton.click()
+    await nextButton.click()
+    await doneButton.click()
+})
 
-Given(/^I am on the (\w+) page$/, async (page) => {
-    await pages[page].open()
-});
+Given('I am on the login screen', async () => {
+    const loginHeader = await $('~Login');
 
-When(/^I login with (\w+) and (.+)$/, async (username, password) => {
-    await LoginPage.login(username, password)
-});
+    await expect(loginHeader).toBeExisting();
+})
 
-Then(/^I should see a flash message saying (.*)$/, async (message) => {
-    await expect(SecurePage.flashAlert).toBeExisting();
-    await expect(SecurePage.flashAlert).toHaveTextContaining(message);
-});
+When('I login with email {string} and password {string}', async (email: string, password: string) => {
+    const emailTextBox = await $('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]');
+    const passwordTextBox = await $('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[2]');
+    const loginButton = await $("~LOGIN");
+
+    await emailTextBox.click();
+    await emailTextBox.setValue(email);
+
+    await passwordTextBox.click();
+    await passwordTextBox.setValue(password);
+
+    await loginButton.click()
+})
+
+Then('I should see dashboard screen', async () => {
+    const dashboardTitle = await $("~Which brand of water\nwould you like to buy?");
+
+    await expect(dashboardTitle).toBeExisting();
+})
+
 
