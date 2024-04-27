@@ -1,4 +1,4 @@
-import 'package:automation_appium/login/login_screen.dart';
+import 'package:automation_appium/presentation/journey/login/login_screen.dart';
 import 'package:automation_appium/utils/colors.dart';
 import 'package:automation_appium/utils/preferences.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:automation_appium/home/page_home.dart';
-import 'package:automation_appium/login/login_screen.dart';
+import 'package:automation_appium/presentation/layouts/home/page_home.dart';
+import 'package:automation_appium/presentation/journey/login/login_screen.dart';
 import 'package:automation_appium/utils/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';

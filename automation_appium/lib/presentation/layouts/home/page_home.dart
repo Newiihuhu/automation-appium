@@ -1,6 +1,6 @@
-import 'package:automation_appium/dashboard/dashboard_screen.dart';
-import 'package:automation_appium/setting/setting_screen.dart';
-import 'package:automation_appium/widgets/bottom_navigationBar.dart';
+import 'package:automation_appium/presentation/journey/dashboard/dashboard_screen.dart';
+import 'package:automation_appium/presentation/journey/setting/setting_screen.dart';
+import 'package:automation_appium/presentation/widgets/bottom_navigationBar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

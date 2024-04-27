@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../login/login_screen.dart';
 import 'intro_widget.dart';
-import '../widgets/dots_indicator.dart';
+import '../../widgets/dots_indicator.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});

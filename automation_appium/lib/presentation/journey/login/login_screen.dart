@@ -1,12 +1,12 @@
-import 'package:automation_appium/home/page_home.dart';
+import 'package:automation_appium/presentation/layouts/home/page_home.dart';
 import 'package:automation_appium/utils/firebase.dart';
 import 'package:automation_appium/utils/preferences.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../signup/signup_screen.dart';
-import '../widgets/gradient_text.dart';
-import '../widgets/input_text.dart';
+import '../../widgets/gradient_text.dart';
+import '../../widgets/input_text.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
