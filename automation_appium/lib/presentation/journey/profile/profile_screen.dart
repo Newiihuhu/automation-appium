@@ -1,3 +1,4 @@
+import 'package:automation_appium/presentation/journey/profile/photo_list_widget.dart';
 import 'package:automation_appium/presentation/widgets/upper_curve_clipper.dart';
 import 'package:automation_appium/presentation/widgets/utils_widget.dart';
 import 'package:automation_appium/utils/colors.dart';
@@ -8,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -46,12 +49,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             statusBarIconBrightness: Brightness.dark,
             systemNavigationBarIconBrightness: Brightness.dark,
             systemNavigationBarColor: backgroundColor),
-        child: Container(
-          child: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-            child: Column(
-              children: <Widget>[upperPart()],
-            ),
+        child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: Column(
+            children: <Widget>[upperPart(), PhotosList()],
           ),
         ),
       ),
