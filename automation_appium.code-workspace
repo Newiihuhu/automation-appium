@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "automation_appium"
+		},
+		{
+			"path": "e2e_mobile"
+		}
+	]
+}
