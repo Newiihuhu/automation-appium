@@ -5,11 +5,13 @@ import 'package:automation_appium/utils/preferences.dart';
 import 'package:flutter/material.dart';
 
 class SettingScreen extends StatefulWidget {
+  const SettingScreen({super.key});
+
   @override
-  _SettingsScreenState createState() => _SettingsScreenState();
+  SettingsScreenState createState() => SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingScreen> {
+class SettingsScreenState extends State<SettingScreen> {
   bool isPrivateAccount = false;
   bool pushNotification = true;
   bool localNotification = false;
@@ -59,7 +61,7 @@ class _SettingsScreenState extends State<SettingScreen> {
             onTap: () async {
               await Preferences.setLoggedIn('');
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ChangePasswordScreen()),
+                MaterialPageRoute(builder: (context) => const ChangePasswordScreen()),
               );
             },
           ),

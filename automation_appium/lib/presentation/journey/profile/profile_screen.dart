@@ -5,7 +5,6 @@ import 'package:automation_appium/utils/colors.dart';
 import 'package:automation_appium/utils/firebase.dart';
 import 'package:automation_appium/utils/preferences.dart';
 import 'package:automation_appium/utils/responsive_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -13,10 +12,10 @@ class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  ProfileScreenState createState() => ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class ProfileScreenState extends State<ProfileScreen> {
   late Screen size;
   String? userName;
 
@@ -54,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
           child: Column(
-            children: <Widget>[upperPart(), PhotosList()],
+            children: <Widget>[upperPart(), const PhotosList()],
           ),
         ),
       ),

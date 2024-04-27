@@ -77,10 +77,10 @@ class BoxField extends StatefulWidget {
         assert(maxLength == null || maxLength > 0);
 
   @override
-  _BoxFieldState createState() => _BoxFieldState();
+  BoxFieldState createState() => BoxFieldState();
 }
 
-class _BoxFieldState extends State<BoxField> {
+class BoxFieldState extends State<BoxField> {
   double? width;
   double? height;
   Screen? size;
@@ -125,7 +125,7 @@ class _BoxFieldState extends State<BoxField> {
                 borderRadius: BorderRadius.circular(8.0)),
             child: TextFormField(
               key: widget.key,
-              style: TextStyle(fontFamily: 'Exo2'),
+              style: const TextStyle(fontFamily: 'Exo2'),
               obscureText: widget.obscureText,
               controller: widget.controller,
               onSaved: widget.onSaved,

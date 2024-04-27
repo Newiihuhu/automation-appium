@@ -40,8 +40,7 @@ Future<bool> signUpUser(String email, String password, String name,
 Future<bool> reauthenticateUser(
     String email, String password, Function(String) onError) async {
   try {
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
@@ -54,7 +53,7 @@ Future<bool> reauthenticateUser(
 
 // Add this function to firebase.dart
 Future<String?> fetchUserName(String uuid) async {
- DocumentSnapshot userDoc =
+  DocumentSnapshot userDoc =
       await FirebaseFirestore.instance.collection('users').doc(uuid).get();
- return userDoc.get('name');
+  return userDoc.get('name');
 }

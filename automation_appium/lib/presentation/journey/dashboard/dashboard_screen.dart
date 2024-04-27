@@ -3,10 +3,8 @@ import 'package:automation_appium/utils/responsive_screen.dart';
 import 'package:automation_appium/presentation/widgets/boxfield.dart';
 import 'package:automation_appium/presentation/widgets/tabs_chips.dart';
 import 'package:automation_appium/presentation/widgets/upper_curve_clipper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../../models/water.dart';
 

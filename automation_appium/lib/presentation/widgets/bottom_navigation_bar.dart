@@ -13,10 +13,10 @@ class BottomNavBar extends StatefulWidget {
   });
 
   @override
-  _BottomNavBarState createState() => _BottomNavBarState();
+  BottomNavBarState createState() => BottomNavBarState();
 }
 
-class _BottomNavBarState extends State<BottomNavBar> {
+class BottomNavBarState extends State<BottomNavBar> {
   int _currentTabIndex = 0;
 
   late final Screen _screenSize;

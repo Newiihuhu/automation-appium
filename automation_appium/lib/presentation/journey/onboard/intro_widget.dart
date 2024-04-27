@@ -5,7 +5,7 @@ class IntroWidget extends StatelessWidget {
   final String text;
   final String title;
 
-  const IntroWidget(this.assetImage, this.title, this.text);
+  const IntroWidget(this.assetImage, this.title, this.text, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class IntroWidget extends StatelessWidget {
           Center(
             child: Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                   fontFamily: 'Exo2',
                   fontWeight: FontWeight.w500,
                   fontSize: 26,
@@ -33,7 +33,8 @@ class IntroWidget extends StatelessWidget {
               verticalDirection: VerticalDirection.up,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 80, left: 30, right: 20),
+                  padding:
+                      const EdgeInsets.only(bottom: 80, left: 30, right: 20),
                   child: Text(
                     text,
                     style: TextStyle(

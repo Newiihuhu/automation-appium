@@ -1,7 +1,7 @@
 import 'package:automation_appium/presentation/journey/dashboard/dashboard_screen.dart';
 import 'package:automation_appium/presentation/journey/profile/profile_screen.dart';
 import 'package:automation_appium/presentation/journey/setting/setting_screen.dart';
-import 'package:automation_appium/presentation/widgets/bottom_navigationBar.dart';
+import 'package:automation_appium/presentation/widgets/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -64,10 +64,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         tabView = [const DashboardScreen()];
         break;
       case 1:
-        tabView = [ProfileScreen()];
+        tabView = [const ProfileScreen()];
         break;
       case 2:
-        tabView = [SettingScreen()];
+        tabView = [const SettingScreen()];
         break;
     }
     return PageView(controller: pageController, children: tabView);

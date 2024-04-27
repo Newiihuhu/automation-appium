@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class PhotosList extends StatefulWidget {
+  const PhotosList({super.key});
+
   @override
-  _PhotosListState createState() => _PhotosListState();
+  PhotosListState createState() => PhotosListState();
 }
 
-class _PhotosListState extends State<PhotosList> {
+class PhotosListState extends State<PhotosList> {
   bool isLoading = true;
   bool internetCheck = true;
   List<String> photoList = [];

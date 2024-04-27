@@ -2,8 +2,6 @@ import 'package:automation_appium/presentation/journey/login/login_screen.dart';
 import 'package:automation_appium/utils/firebase.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../widgets/gradient_text.dart';
 import '../../widgets/input_text.dart';
