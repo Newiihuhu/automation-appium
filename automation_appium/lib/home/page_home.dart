@@ -13,6 +13,22 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   int currentTab = 0;
   late PageController pageController;
+  List<Map<String, Object>> bottomNavBarItem = [
+    {
+      'backgroundColor': Colors.blue,
+      'icon': const Icon(Icons.home),
+      'label': 'Dashboard',
+    },
+    {
+      'backgroundColor': Colors.green,
+      'icon': const Icon(Icons.account_circle),
+      'label': 'Profile',
+    },
+    {
+      'icon': const Icon(Icons.settings),
+      'label': 'Setting',
+    },
+  ];
 
   void _changeCurrentTab(int tab) {
     setState(() {
@@ -33,6 +49,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         body: bodyView(currentTab),
         bottomNavigationBar: BottomNavBar(
           onTabSelection: _changeCurrentTab,
+          items: bottomNavBarItem,
         ) // Changed to a defined method call
         );
   }
@@ -43,19 +60,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     //Current Tabs in Home Screen...
     switch (currentTab) {
       case 0:
-        //Dashboard Page
         tabView = [const DashboardScreen()];
         break;
-      case 1:
-        //Search Page
-        tabView = [Container()];
-        break;
       case 2:
-        //Profile Page
         tabView = [Container()];
         break;
       case 3:
-        //Setting Page
         tabView = [SettingScreen()];
         break;
     }

@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
   final ValueChanged<int> onTabSelection;
+  final List<Map<String, dynamic>> items;
 
   const BottomNavBar({
     super.key,
     required this.onTabSelection,
+    required this.items,
   });
 
   @override
@@ -37,28 +39,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
       selectedFontSize: 15.0,
       showUnselectedLabels: true,
       onTap: _onItemTapped,
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          backgroundColor: Colors.grey.shade50,
-          icon: const Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          backgroundColor: Colors.grey.shade50,
-          icon: const Icon(Icons.search),
-          label: 'Search',
-        ),
-        BottomNavigationBarItem(
-          backgroundColor: Colors.grey.shade50,
-          icon: const Icon(Icons.notifications),
-          label: 'Notifications',
-        ),
-        BottomNavigationBarItem(
-          backgroundColor: Colors.grey.shade50,
-          icon: const Icon(Icons.account_circle),
-          label: 'Profile',
-        ),
-      ],
+      items: widget.items.map((item) {
+        return BottomNavigationBarItem(
+          backgroundColor: item['backgroundColor'] ?? Colors.grey.shade50,
+          icon: item['icon'],
+          label: item['label'],
+        );
+      }).toList(),
     );
   }
 
