@@ -21,8 +21,10 @@ class _PhotosListState extends State<PhotosList> {
 
   void fetchRandomPhotos() async {
     photoList = List.generate(
-        30, (index) => "https://source.unsplash.com/random?sig=$index");
-    setState(() => isLoading = false);
+        15, (index) => "https://source.unsplash.com/random?sig=$index");
+    if (mounted) {
+      setState(() => isLoading = false);
+    }
   }
 
   @override

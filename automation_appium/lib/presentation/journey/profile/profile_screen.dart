@@ -28,9 +28,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> _fetchUserName() async {
     String uuid = await Preferences.getUserUID();
-    if (uuid != '') {
+    if (uuid != '' && mounted) {
       String? userName = await fetchUserName(uuid);
-      if (userName != null) {
+      if (userName != null && mounted) {
         setState(() {
           this.userName = userName;
         });
