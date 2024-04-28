@@ -1,33 +1,38 @@
 import { Given, Then, When } from "@wdio/cucumber-framework";
 import { expect, $ } from "@wdio/globals";
 
-When('I click create your account', async () => {
+Given('I am on the register screen', async () => {
     const button = await $("~Create your account.");
+    const registerHeader = await $("~Register");
 
     await expect(button).toBeExisting();
     await button.click();
-})
-
-Then('I should see register screen', async () => {
-    const registerHeader = await $("~Register");
     await expect(registerHeader).toBeExisting();
 })
 
-// Given('I am on the register screen', async () => {
-//     const registerHeader = await $("~Register");
+When('I register with username {string} email {string} and password {string}', async (userName: string, email: string, password: string) => {
 
-//     await expect(registerHeader).toBeExisting();
-// })
+    const userNameTextBox = await $("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]");
+    const emailTextBox = await $("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[2]");
+    const passwordTextBox = await $("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[3]");
+    const confirmPasswordTextBox = await $("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[4]");
+    const registerButton = await $("~Sign Up");
 
-// When('I fill all fields with username {string} email {string} and password {string}', async (s: string, s2: string, s3: string) => {
 
-//     const userNameTextBox = await $("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]");
-//     const emailTextBox = await $("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[2]");
-//     const passwordTextBox = await $("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[3]");
-//     const confirmPasswordTextBox = await $("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[4]");
+    await userNameTextBox.click();
+    await userNameTextBox.setValue(userName);
+    await emailTextBox.click();
+    await emailTextBox.setValue(email);
+    await passwordTextBox.click();
+    await passwordTextBox.setValue(password);
+    await confirmPasswordTextBox.click();
+    await confirmPasswordTextBox.setValue(password);
+    await registerButton.click();
+})
 
-// await userNameTextBox.click();
-// await userNameTextBox.setValue("testtest");
-// await emailTextBox.click();
-// })
+Then('I should register success', async () => {
+    const loginHeader = await $("~Login");
+
+    await expect(loginHeader).toBeExisting();
+})
   
